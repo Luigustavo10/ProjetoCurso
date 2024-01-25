@@ -26,13 +26,15 @@
 body {
   /*backgroud: color image repeat position/size */
   background: var(--bg-url) no-repeat top center/cover;
+  height: 100vh;
 }
 body * {
   font-family: "Inter", sans-serif;
   color: var(--text-color);
 }
 #conteiner {
-  width: 360px;
+  width: 100%;
+  max-width: 588px;
   margin: 56px auto 0px;
 }
 #profile {
@@ -70,10 +72,14 @@ body * {
   left: 0px;
   z-index: 1;
   transform: translateY(-50%);
+  animation: slide-back 0.3s;
 }
-.light #switch button{
-  right: 0px;
-  left: initial;
+.light #switch button {
+  animation: slide-in 0.5s forwards;
+}
+
+#switch button:hover {
+  outline: 8px solid var(--hightlight-color);
 }
 
 #switch span {
@@ -87,7 +93,7 @@ body * {
   border-radius: 9999px;
 }
 
-.light switch{
+.light switch {
   right: 0px;
   left: initial;
 }
@@ -147,4 +153,31 @@ footer {
   padding: 24px;
   text-align: center;
   font-size: 14px;
+}
+
+@media (min-width: 700px) {
+  :root {
+    --bg-url: url(./assets/bg-desktop.jpg);
+  }
+
+  .light {
+    --bg-url: url(./assets/bg-desktop-light.jpg);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    left: 0px;
+  }
+  to {
+    left: 50%;
+  }
+}
+@keyframes slide-back {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0px;
+  }
 }
